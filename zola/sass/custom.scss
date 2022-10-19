@@ -4,13 +4,13 @@
 }
 
 .collapsible-section:after {
-	content: "➕"; /* Unicode character for "plus" sign (+) */
+	content: "➕ "; /* Unicode character for "plus" sign (+) */
 	font-size: 0.8rem;
 	float: left;
 }
 
 .collapsible-section.open:after {
-	content: "➖"; /* Unicode character for "minus" sign (-) */
+	content: "➖ "; /* Unicode character for "minus" sign (-) */
 }
 
 .dark .collapsible-section:after,
