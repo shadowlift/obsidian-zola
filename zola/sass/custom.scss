@@ -6,7 +6,7 @@
 .collapsible-section:after {
 	content: "➕"; /* Unicode character for "plus" sign (+) */
 	font-size: 0.8rem;
-	float: right;
+	float: left;
 }
 
 .collapsible-section.open:after {
