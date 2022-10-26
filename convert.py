@@ -45,12 +45,12 @@ if __name__ == "__main__":
                     edges.extend([doc_path.edge(rel_path) for rel_path in linked])
 
                 content = [
-                    "---",
+                    "----",
                     f'title: "{doc_path.page_title}"',
                     f"date: {doc_path.modified}",
                     f"updated: {doc_path.modified}",
                     "template: docs/page.html",
-                    "---",
+                    "----",
                     # To add last line-break
                     "",
                 ]
