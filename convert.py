@@ -45,16 +45,24 @@ if __name__ == "__main__":
                     edges.extend([doc_path.edge(rel_path) for rel_path in linked])
 
                 content = [
-                    "----",
+                    "---",
                     f'title: "{doc_path.page_title}"',
                     f"date: {doc_path.modified}",
                     f"updated: {doc_path.modified}",
                     "template: docs/page.html",
-                    "----",
+                    "---",
                     # To add last line-break
                     "",
                 ]
-                doc_path.write(["\n".join(content), *parsed_lines])
+
+                times = [
+                    "",
+                    "",
+                    f"date: {doc_path.modified}",
+                    f"updated: {doc_path.modified}",
+                    "",
+                ]
+                doc_path.write(["\n".join(content), *parsed_lines, *times])
                 print(f"Found page: {doc_path.new_rel_path}")
             else:
                 # Resource
