@@ -41,6 +41,10 @@ if __name__ == "__main__":
                     parsed_line = re.sub(r"\\\\\s*$", r"\\\\\\\\", parsed_line)
 
                     parsed_lines.append(parsed_line)
+                    
+                    # Adding the YAML to the END of the .md parse (to get dates)
+                    yaml = parsed_lines[0:3]
+                    parsed_lines.append(yaml)
 
                     edges.extend([doc_path.edge(rel_path) for rel_path in linked])
 
@@ -54,15 +58,7 @@ if __name__ == "__main__":
                     # To add last line-break
                     "",
                 ]
-
-                times = [
-                    "",
-                    "",
-                    f"date: {doc_path.modified}",
-                    f"updated: {doc_path.modified}",
-                    "",
-                ]
-                doc_path.write(["\n".join(content), *parsed_lines, *times])
+                doc_path.write(["\n".join(content), *parsed_lines])
                 print(f"Found page: {doc_path.new_rel_path}")
             else:
                 # Resource
