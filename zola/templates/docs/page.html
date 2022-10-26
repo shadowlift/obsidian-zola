@@ -27,6 +27,13 @@
           {{ macros_docs_graph::docs_graph(page=page, current_section=current_section) }}
           {% endif %}
       <div class="row flex-xl-nowrap" style="background-color:rgb(240, 251, 255);margin-top:3em;" id="disqus_thread"></div>
+        <p>Last updated:</p>
+        <p id="demo"></p>
+        
+        <script>
+        let text = document.lastModified;
+        document.getElementById("demo").innerHTML = text;
+        </script>
         <script class="docs-content col-lg-11 col-xl-9">
           /**
           *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
