@@ -29,7 +29,7 @@
       <p id="demo" style="text-align:right"><br>Last updated:‎‎<br></p>
     
       <script>
-      let text = Date(document.lastModified).toLocaleString("en-GB",{dateStyle:"full", timeStyle:'long'});
+      let text = Date(document.lastModified).toLocaleString("en-GB",{dateStyle:"short", timeStyle:'short'});
       document.getElementById("demo").insertAdjacentHTML("beforeend", text);
       </script>
       <div class="row flex-xl-nowrap" style="background-color:rgb(240, 251, 255);margin-top:3em;" id="disqus_thread"></div>
