@@ -41,11 +41,6 @@ if __name__ == "__main__":
                     parsed_line = re.sub(r"\\\\\s*$", r"\\\\\\\\", parsed_line)
 
                     parsed_lines.append(parsed_line)
-                    
-                    # Adding the YAML to the END of the .md parse (to get dates)
-                    print(parsed_lines)
-                    # yaml = parsed_lines[0:3]
-                    # parsed_lines.append(yaml)
 
                     edges.extend([doc_path.edge(rel_path) for rel_path in linked])
 
