@@ -29,10 +29,9 @@ if __name__ == "__main__":
     for path in [raw_dir, *all_paths]:
         doc_path = DocPath(path)
         print(doc_path)
-        if str(readme) in str(doc_path):
+        if 'readme' in doc_path:
             pass
         else:
-
             if doc_path.is_file:
                 if doc_path.is_md:
                     # Page
