@@ -29,35 +29,34 @@ if __name__ == "__main__":
     for path in [raw_dir, *all_paths]:
         doc_path = DocPath(path)
         if doc_path.is_file:
-            if doc_path.is_md:
-                print(doc_path.page_title)      
-                if 'README' not in doc_path.page_title:
-                    # Page
-                    nodes[doc_path.abs_url] = doc_path.page_title
-                    content = doc_path.content
-                    parsed_lines: List[str] = []
-                    for line in content:
-                        parsed_line, linked = DocLink.parse(line, doc_path)
+            if 'README' not in doc_path.page_title:         
+                if doc_path.is_md:    
+                        # Page
+                        nodes[doc_path.abs_url] = doc_path.page_title
+                        content = doc_path.content
+                        parsed_lines: List[str] = []
+                        for line in content:
+                            parsed_line, linked = DocLink.parse(line, doc_path)
 
-                        # Fix LaTEX new lines
-                        parsed_line = re.sub(r"\\\\\s*$", r"\\\\\\\\", parsed_line)
+                            # Fix LaTEX new lines
+                            parsed_line = re.sub(r"\\\\\s*$", r"\\\\\\\\", parsed_line)
 
-                        parsed_lines.append(parsed_line)
+                            parsed_lines.append(parsed_line)
 
-                        edges.extend([doc_path.edge(rel_path) for rel_path in linked])
+                            edges.extend([doc_path.edge(rel_path) for rel_path in linked])
 
-                    content = [
-                        "---",
-                        f'title: "{doc_path.page_title}"',
-                        f"date: {doc_path.modified}",
-                        f"updated: {doc_path.modified}",
-                        "template: docs/page.html",
-                        "---",
-                        # To add last line-break
-                        "",
-                    ]
-                    doc_path.write(["\n".join(content), *parsed_lines])
-                    print(f"Found page: {doc_path.new_rel_path}")
+                        content = [
+                            "---",
+                            f'title: "{doc_path.page_title}"',
+                            f"date: {doc_path.modified}",
+                            f"updated: {doc_path.modified}",
+                            "template: docs/page.html",
+                            "---",
+                            # To add last line-break
+                            "",
+                        ]
+                        doc_path.write(["\n".join(content), *parsed_lines])
+                        print(f"Found page: {doc_path.new_rel_path}")
                 else:
                     # Resource
                     doc_path.copy()
