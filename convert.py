@@ -29,7 +29,8 @@ if __name__ == "__main__":
     for path in [raw_dir, *all_paths]:
         doc_path = DocPath(path)
         if doc_path.is_file:
-            if doc_path.is_md:      
+            if doc_path.is_md:
+                print(doc_path.page_title)      
                 if 'readme' not in doc_path.page_title:
                     # Page
                     nodes[doc_path.abs_url] = doc_path.page_title
