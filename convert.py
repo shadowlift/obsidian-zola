@@ -28,12 +28,9 @@ if __name__ == "__main__":
 
     for path in [raw_dir, *all_paths]:
         doc_path = DocPath(path)
-        print(doc_path)
-        if 'readme' in doc_path:
-            pass
-        else:
-            if doc_path.is_file:
-                if doc_path.is_md:
+        if doc_path.is_file:
+            if doc_path.is_md:      
+                if 'readme' not in doc_path.page_title:
                     # Page
                     nodes[doc_path.abs_url] = doc_path.page_title
                     content = doc_path.content
@@ -64,25 +61,25 @@ if __name__ == "__main__":
                     # Resource
                     doc_path.copy()
                     print(f"Found resource: {doc_path.new_rel_path}")
-            else:
-                """Section"""
-                # Frontmatter
-                # TODO: sort_by depends on settings
-                content = [
-                    "---",
-                    f'title: "{doc_path.section_title}"',
-                    "template: docs/section.html",
-                    f"sort_by: {Settings.options['SORT_BY']}",
-                    f"weight: {section_count}",
-                    "extra:",
-                    f"    sidebar: {doc_path.section_sidebar}",
-                    "---",
-                    # To add last line-break
-                    "",
-                ]
-                section_count += 1
-                doc_path.write_to("_index.md", "\n".join(content))
-                print(f"Found section: {doc_path.new_rel_path}")
+        else:
+            """Section"""
+            # Frontmatter
+            # TODO: sort_by depends on settings
+            content = [
+                "---",
+                f'title: "{doc_path.section_title}"',
+                "template: docs/section.html",
+                f"sort_by: {Settings.options['SORT_BY']}",
+                f"weight: {section_count}",
+                "extra:",
+                f"    sidebar: {doc_path.section_sidebar}",
+                "---",
+                # To add last line-break
+                "",
+            ]
+            section_count += 1
+            doc_path.write_to("_index.md", "\n".join(content))
+            print(f"Found section: {doc_path.new_rel_path}")
 
     pp(nodes)
     pp(edges)
