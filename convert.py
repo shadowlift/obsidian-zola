@@ -31,7 +31,7 @@ if __name__ == "__main__":
         if doc_path.is_file:
             if doc_path.is_md:
                 print(doc_path.page_title)      
-                if 'readme' not in doc_path.page_title:
+                if 'README' not in doc_path.page_title:
                     # Page
                     nodes[doc_path.abs_url] = doc_path.page_title
                     content = doc_path.content
